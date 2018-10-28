@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from collections import defaultdict
 
 # variables
+inputdirectory = 'created'
 directory = 'resources'
 
 # methods
@@ -41,10 +42,10 @@ for i in range(1,8):
     currentdate = currentdate - timedelta(days=1)
     query.append(currentdate.strftime('%Y-%m-%d') + '.md')
 
-journalfilenames = [f for f in listdir('.') if isfile(f) and f.find('.md') != -1]
+journalfilenames = [f for f in listdir(inputdirectory) if isfile(inputdirectory + "/" + f) and f.find('.md') != -1]
 journals = []
 for f in journalfilenames:
-    journals.append(open(f, 'r').readlines())
+    journals.append(open(inputdirectory + '/' + f, 'r').readlines())
 
 
 # get all resource file contents, questions. Accumulate in the form hash[PRACTICE][QUESTION] = list(answers)
@@ -96,4 +97,4 @@ for header in accumulator.keys():
             resultfilecontent += '\n'.join(accumulator[header][question])
             resultfilecontent += '\n\n'
 
-open('results/endofweek_' + startdate + '.md', 'w').write(resultfilecontent)
+open('gathered/endofweek_' + startdate + '.md', 'w').write(resultfilecontent)

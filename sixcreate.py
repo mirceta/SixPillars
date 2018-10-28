@@ -11,6 +11,7 @@ import argparse
 import sys
 
 
+outputdirectory = 'created'
 directory = 'resources'
 headernames = ['THE PRACTICE OF ' + x for x in
                ['LIVING CONSCIOUSLY', 'SELF-ACCEPTANCE', 'SELF-RESPONSIBILITY',
@@ -91,4 +92,4 @@ if os.path.isdir(directory):
 
     resultfilename = str(datetime.datetime.now().strftime('%Y-%m-%d')) + '.md'
 
-    open(resultfilename, 'w').write(allcontent)
+    open(outputdirectory + "/" + resultfilename, 'w').write(allcontent)
